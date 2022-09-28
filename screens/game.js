@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useState } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { colors } from "../constants/colors";
 
@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
     }
 })
 
-const Game = ({ handleEstado})=>{
+const Game = ({ navigation })=>{
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Adivinando Capitales</Text>
             <View style={styles.buttonContainer}>
-            <Button color={colors.secondary} title="Jugar" onPress={()=>handleEstado("jugar")}></Button>  
+            <Button color={colors.secondary} title="Jugar" onPress={()=>navigation.navigate("Jugar")}></Button>  
             </View>
         </View>
     )

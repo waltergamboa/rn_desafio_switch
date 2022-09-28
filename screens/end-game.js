@@ -31,8 +31,8 @@ const styles = StyleSheet.create({
     }    
 })
 
-const EndGame = ({ handleEstado, correctoIncorrecto })=>{
-
+const EndGame = ({ route, navigation  })=>{
+const { correctoIncorrecto } = route.params;
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Validar Respuesta</Text>
@@ -54,7 +54,7 @@ const EndGame = ({ handleEstado, correctoIncorrecto })=>{
 }
             </View>
          <View style={styles.buttonContainer}>
-            <Button title="Volver a Jugar" onPress={()=>handleEstado("juego")} color={colors.tertiary}></Button>
+            <Button title="Volver a Jugar" onPress={()=>navigation.navigate("Juego")} color={colors.tertiary}></Button>
             </View>
         </View>
     )

@@ -46,10 +46,12 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         textAlign: 'center',
         fontFamily: 'Raleway-Regular',
+        backgroundColor: colors.secondary,
+        borderRadius: 15
     },    
 })
 
-const PlayGame = ({ handleEstado, setCorrectoIncorrecto })=>{
+const PlayGame = ({ navigation })=>{
     const [texto, setTexto] = useState("");
     const [indice, setIndice] = useState(generateRandomNumberBetween(0, 11))
 
@@ -58,19 +60,16 @@ const PlayGame = ({ handleEstado, setCorrectoIncorrecto })=>{
     }
 
     const onHandleVerificar = ()=>{
-        if(texto !== ""){
-            handleEstado("fin");
+        if(texto === ""){
+           return;
         }
 
-        if(texto !== capitales[indice].toLowerCase()){
-            setCorrectoIncorrecto(false);
-        } else {
-            setCorrectoIncorrecto(true);
+        let correctoIncorrecto = false;
+        if(texto === capitales[indice].toLowerCase()){
+            correctoIncorrecto = true;
         }
-    }
 
-    const onHandlePreguntasRespuestas = ()=>{
-
+        navigation.navigate("Fin", {correctoIncorrecto: correctoIncorrecto});
     }
 
     return (
@@ -78,8 +77,9 @@ const PlayGame = ({ handleEstado, setCorrectoIncorrecto })=>{
             <Text style={styles.title}>Jugando</Text>
             <View>
                 <Text style={styles.label}>Pregunta</Text>
-                <Text style={styles.label}>Cual es la capital de {paises[indice]}</Text>
+                <Text style={styles.label}>Cual es la capital de {paises[indice]}?</Text>
                 <View style={styles.inputContainer}>
+                <Text style={styles.label}>Tu respuesta...</Text>
                 <TextInput 
                     style={styles.input} 
                     keyboardType="default"
@@ -93,7 +93,7 @@ const PlayGame = ({ handleEstado, setCorrectoIncorrecto })=>{
                 </View>
             </View>
             <View style={styles.buttonContainer}>
-            <Button title="Volver" onPress={()=>handleEstado("juego")} color={colors.tertiary}></Button>
+            <Button title="Volver" onPress={()=>navigation.navigate("Juego")} color={colors.tertiary}></Button>
             <Button title="Verificar" onPress={()=>onHandleVerificar()} color={colors.secondary}></Button>            
             </View>
         </View>
