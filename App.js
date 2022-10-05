@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { useFonts } from "expo-font";
-import Header from "./components/header";
-import Game from "./screens/game";
-import PlayGame from "./screens/play-game";
-import EndGame from "./screens/end-game";
 import AppNavigator from "./src/navigation";
 
 const styles = StyleSheet.create({
@@ -26,34 +22,7 @@ export default function App() {
     return <ActivityIndicator/>
   }
 
-  // const [estado, setEstado] = useState("juego");
-  
-
-  // const onHandleEstado = (estado)=>{
-  //   setEstado(String(estado).toLowerCase());
-  // }
-
-  // let content;
-  // switch (String(estado).toLowerCase()) {
-  //   case "juego":
-  //     content = <Game handleEstado={onHandleEstado}></Game>
-  //     break;    
-  //   case "jugar":
-  //     content = <PlayGame handleEstado={onHandleEstado} setCorrectoIncorrecto={setCorrectoIncorrecto} ></PlayGame>
-  //     break;
-  //   case "fin":
-  //     content = <EndGame handleEstado={onHandleEstado} correctoIncorrecto={correctoIncorrecto}></EndGame>
-  //       break;
-  //   default:
-  //     content = <Game></Game>
-  //     break;
-  // }
-
   return (
-    // <View style={styles.container}>
-    //   <Header title="Bienvenido"></Header>
-    //   {content}
-    // </View>
     <AppNavigator/>
   );
 }
