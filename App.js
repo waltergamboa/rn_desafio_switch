@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 import { useFonts } from "expo-font";
 import AppNavigator from "./src/navigation";
+import { Provider } from "react-redux";
+import store from "./src/store";
 
 const styles = StyleSheet.create({
   container: {
@@ -23,7 +25,9 @@ export default function App() {
   }
 
   return (
-    <AppNavigator/>
+    <Provider store={store}>
+      <AppNavigator/>
+    </Provider>
   );
 }
 

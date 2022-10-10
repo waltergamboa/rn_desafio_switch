@@ -2,7 +2,8 @@ import { React, useState } from "react";
 import { View, Text, Button, TextInput, StyleSheet } from "react-native";
 import { colors } from "../constants/colors";
 import { generateRandomNumberBetween } from "../utils/functions";
-import { paises, capitales } from "../utils/preguntas-respuestas";
+import { useSelector, useDispatch} from "react-redux"
+import { selectPais, selectCapital, correctoIncorrecto } from "../src/store/actions";
 
 const styles = StyleSheet.create({
     container: {
@@ -55,6 +56,10 @@ const PlayGame = ({ navigation })=>{
     const [texto, setTexto] = useState("");
     const [indice, setIndice] = useState(generateRandomNumberBetween(0, 11))
 
+    const dispatch = useDispatch();
+    const paises = useSelector((state)=>state.paises.paises);
+    const capitales = useSelector((state)=>state.capitales.capitales);
+
     const onHandleChange = (text) => {
         setTexto(String(text).toLowerCase());
     }
@@ -64,12 +69,15 @@ const PlayGame = ({ navigation })=>{
            return;
         }
 
-        let correctoIncorrecto = false;
+        let respuesta = false;
         if(texto === capitales[indice].toLowerCase()){
-            correctoIncorrecto = true;
+            respuesta = true;
         }
 
-        navigation.navigate("Fin", {correctoIncorrecto: correctoIncorrecto});
+        dispatch(selectPais(indice));
+        dispatch(selectCapital(indice));
+        dispatch(correctoIncorrecto(respuesta));
+        navigation.navigate("Fin", {correctoIncorrecto1: respuesta});
     }
 
     return (

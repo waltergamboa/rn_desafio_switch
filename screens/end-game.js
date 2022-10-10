@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { View, Text, Button, Image, StyleSheet } from "react-native";
 import { colors } from "../constants/colors";
+import { useSelector} from "react-redux"
 
 const styles = StyleSheet.create({
     container: {
@@ -31,8 +32,10 @@ const styles = StyleSheet.create({
     }    
 })
 
-const EndGame = ({ route, navigation  })=>{
-const { correctoIncorrecto } = route.params;
+const EndGame = ({ navigation  })=>{
+const pais = useSelector((state)=>state.paises.selected);
+const capital = useSelector((state)=>state.capitales.selected);
+const correctoIncorrecto = useSelector((state)=>state.capitales.correctoIncorrecto);
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Validar Respuesta</Text>
