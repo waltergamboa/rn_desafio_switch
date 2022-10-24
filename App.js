@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 import AppNavigator from "./src/navigation";
 import { Provider } from "react-redux";
 import store from "./src/store";
+import { borrarJugador, init } from "./src/db";
 
 const styles = StyleSheet.create({
   container: {
@@ -12,7 +13,23 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function App() {
+// borrarJugador()
+//   .then(() => {
+//     console.log("database deleted");
+//   })
+//   .catch((err) => {
+//     console.log("dabatabase delete failed.", err);
+//   });
+
+init()
+  .then(() => {
+    console.log("Initialized database");
+  })
+  .catch((err) => {
+    console.log("Initializing db failed.", err);
+  });
+
+  export default function App() {
   const [loaded] = useFonts({
     "Raleway-Regular": require("./assets/fonts/Raleway-Regular.ttf"),
     "Raleway-Bold": require("./assets/fonts/Raleway-Bold.ttf"),

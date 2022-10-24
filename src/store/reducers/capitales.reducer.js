@@ -1,4 +1,4 @@
-import { capitales } from "../../../utils/preguntas-respuestas";
+import { capitales } from "../../utils/preguntas-respuestas";
 import { capitalesTypes } from "../types";
 
 const { SELECT_CAPITAL, CORRECTO_INCORRECTO } = capitalesTypes;

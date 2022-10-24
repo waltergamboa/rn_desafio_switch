@@ -42,14 +42,14 @@ const correctoIncorrecto = useSelector((state)=>state.capitales.correctoIncorrec
             <View style={styles.respuestaContainer}>
             {correctoIncorrecto ? (
             <>
-            <Image source={require("../assets/correcto.png")} 
+            <Image source={require("../../assets/correcto.png")} 
                 style={{width: 40, height: 40}}
                 />
             <Text>Correcto</Text>
             </>)
             :
             (<>
-                <Image source={require("../assets/incorrecto.png")} 
+                <Image source={require("../../assets/incorrecto.png")} 
                 style={{width: 40, height: 40}}
                 />
             <Text>Incorrecto</Text>

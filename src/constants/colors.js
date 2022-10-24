@@ -10,3 +10,5 @@ export const colors = {
     black: '#000000',
     gray: '#9E9E9E',
 }
+
+export default colors;

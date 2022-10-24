@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 const Game = ({ navigation })=>{
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Adivinando Capitales</Text>
+            <Text style={styles.title}>Prguntas sobre capitales del mundo</Text>
             <View style={styles.buttonContainer}>
             <Button color={colors.secondary} title="Jugar" onPress={()=>navigation.navigate("Jugar")}></Button>  
             </View>

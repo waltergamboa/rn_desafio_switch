@@ -3,7 +3,7 @@ import { View, Text, Button, TextInput, StyleSheet } from "react-native";
 import { colors } from "../constants/colors";
 import { generateRandomNumberBetween } from "../utils/functions";
 import { useSelector, useDispatch} from "react-redux"
-import { selectPais, selectCapital, correctoIncorrecto } from "../src/store/actions";
+import { selectPais, selectCapital, correctoIncorrecto } from "../store/actions";
 
 const styles = StyleSheet.create({
     container: {

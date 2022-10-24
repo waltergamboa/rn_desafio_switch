@@ -1,17 +1,18 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import BienvenidaNavigator from "./bienvenida.navigation";
 import GameNavigator from "./game.navigation";
 import ScoreNavigator from "./score.navigation";
 import TopNavigator from "./top.navigation";
-import { colors } from "../../constants/colors";
+import { colors } from "../constants/colors";
 
 const BottomTab = createBottomTabNavigator();
 
 const Tabs = () => {
     return (
         <BottomTab.Navigator
-            initialRouteName="GameTab"
+            initialRouteName="InicioTab"
             screenOptions={{
                 headerShown: false,
                 tabBarLabelStyle: {
@@ -20,6 +21,20 @@ const Tabs = () => {
                 }
             }}
         >
+            <BottomTab.Screen
+                name="InicioTab"
+                component={BienvenidaNavigator}
+                options={{
+                    title: 'Inicio',
+                    tabBarIcon: ({ focused }) => (
+                        <Ionicons 
+                            name={focused ? 'home' : 'home-outline'}
+                            size={22}
+                            color={colors.tertiary}
+                        />
+                    )
+                }}
+            /> 
             <BottomTab.Screen
                 name="GameTab"
                 component={GameNavigator}

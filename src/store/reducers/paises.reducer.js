@@ -1,4 +1,4 @@
-import { paises } from "../../../utils/preguntas-respuestas";
+import { paises } from "../../utils/preguntas-respuestas";
 import { paisesTypes } from "../types";
 
 const { SELECT_PAIS } = paisesTypes;
