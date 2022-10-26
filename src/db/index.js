@@ -21,7 +21,24 @@ export const insertJugador = (title, image, address, coords) => {
     db.transaction((tx) => {
       tx.executeSql(
         "INSERT INTO jugadores (name, image, address, coords) VALUES (?, ?, ?, ?);",
-        [title, image, address, JSON.stringify(coords)],
+        [title, image, address, coords],
+        (_, result) => {
+          resolve(result);
+        },
+        (_, err) => reject(err)
+      );
+    });
+  });
+
+  return promise;
+};
+
+export const updateJugador = (id, title, image, address, coords) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "UPDATE jugadores SET name = ?, image = ?, address = ?, coords = ? WHERE id = ?;",
+        [title, image, address, JSON.stringify(coords), id],
         (_, result) => {
           resolve(result);
         },
@@ -37,7 +54,7 @@ export const getJugador = () => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "SELECT * FROM jugadores",
+        "SELECT * FROM jugadores;",
         [],
         (_, result) => {
           resolve(result);
@@ -51,11 +68,11 @@ export const getJugador = () => {
   return promise;
 };
 
-export const borrarJugador = () => {
+export const deleteJugador = () => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "DROP TABLE jugadores",
+        "DELETE FROM jugadores;",
         [],
         (_, result) => {
           resolve(result);

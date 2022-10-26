@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { View, Text, TextInput, Button, Image } from "react-native";
 import SelectorImagen from "../../components/selector-imagen";
 import { styles } from "./styles";
 import { useSelector, useDispatch} from "react-redux"
-import { selectJugador } from "../../store/actions";
+import { selectJugador, datosJugador } from "../../store/actions";
+import { useFocusEffect } from "@react-navigation/native";
 
 const PerfilUsuario = () => {
     const dispatch = useDispatch();
-
-    const [nombreJugador, setNombreJugador] = useState("");
+    const result = useSelector((state)=>state.jugadores.jugador);
+    
+    const [nombreJugador, setNombreJugador] = useState(result[0]?.name);
     const [imagen, setImagen] = useState(null);
 
-    //const result = useSelector((state)=>state.jugadores);
+    useEffect(
+        () => {
+            dispatch(selectJugador());
+            setNombreJugador(result[0]?.name)
+            if (result[0]?.image !== ""){
+                setImagen(result[0]?.image);
+            }
+        }, [dispatch, result]
+    );
 
     const onHandleNombreJugador = (texto)=>{
         setNombreJugador(texto);
@@ -21,9 +31,8 @@ const PerfilUsuario = () => {
         setImagen(imagen);
     }
 
-    const test = ()=>{
-      //  dispatch(selectJugador());
-      //  console.log(result);
+    const guardar = ()=>{
+        dispatch(datosJugador(nombreJugador, imagen, "a", "b"));
     }
 
   return (
@@ -41,10 +50,10 @@ const PerfilUsuario = () => {
         <View style={styles.containerButton}>
             <Button
                 title="Guardar"
-                onPress={test}>
+                onPress={guardar}>
             </Button>
         </View>
-        <Image style={{width: "10%", heigth: "10%"}} source={{ uri: imagen }}></Image>  
+        <Image style={{width: "10%", heigth: "10%"}} source={{ uri: imagen }}></Image> 
     </View>
   );
 };

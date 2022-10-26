@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Button, Alert, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-file-system";
 import { styles } from "./styles";
 import colors from "../../constants/colors";
+import { useSelector, useDispatch} from "react-redux"
 
 import * as FileSystem from "expo-file-system";
 
 const SelectorImagen = ({onHandleImagen})=>{
     const [imagenSeleccionada, setImagenSeleccionada] = useState(null);
 
+    const result = useSelector((state)=>state.jugadores.jugador);
+
+    useEffect(() => {
+        setImagenSeleccionada(result[0]?.image)
+      }, [result]);
+
+
     const verifyPermissions = async () =>{
-        //const permissions = Permissions.CAMERA;
         const { status } = await ImagePicker.requestCameraPermissionsAsync();
 
         if (status !== "granted"){

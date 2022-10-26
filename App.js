@@ -13,14 +13,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// borrarJugador()
-//   .then(() => {
-//     console.log("database deleted");
-//   })
-//   .catch((err) => {
-//     console.log("dabatabase delete failed.", err);
-//   });
-
 init()
   .then(() => {
     console.log("Initialized database");
